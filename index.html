@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitch Clone</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        twitch: {
+                            purple: '#9146FF',
+                            dark: '#0E0E10',
+                            gray: '#18181B',
+                            light: '#EFEFF1'
+                        }
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .stream-thumbnail {
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="dark bg-twitch-dark text-white font-inter">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 bg-twitch-gray border-b border-gray-800 z-50">
+        <nav class="container mx-auto px-4 py-2 flex items-center justify-between">
+            <!-- Left side -->
+            <div class="flex items-center space-x-8">
+                <a href="#" class="text-2xl font-bold text-twitch-purple">
+                    <i class="fab fa-twitch"></i>
+                </a>
+                <a href="#" class="hover:text-twitch-purple transition">Following</a>
+                <a href="#" class="hover:text-twitch-purple transition">Browse</a>
+            </div>
+
+            <!-- Middle - Search -->
+            <div class="flex-1 max-w-xl mx-8">
+                <div class="relative">
+                <input id="searchInput" type="text" placeholder="Search" class="w-full bg-gray-900 rounded-lg py-1.5 px-4 focus:outline-none focus:ring-2 focus:ring-twitch-purple">
+                    <button class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right side -->
+            <div id="authButtons" class="flex items-center space-x-4">
+                <!-- Auth buttons will be injected by JavaScript -->
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="fixed left-0 top-14 bottom-0 w-16 bg-twitch-gray flex flex-col items-center py-4 space-y-4">
+        <button class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-gray-600 transition">
+            <i class="fas fa-heart"></i>
+        </button>
+        <button class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-gray-600 transition">
+            <i class="fas fa-gamepad"></i>
+        </button>
+        <button class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-gray-600 transition">
+            <i class="fas fa-video"></i>
+        </button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="pt-14 pl-16">
+        <div class="container mx-auto px-4 py-8">
+            <!-- Featured Section -->
+            <section class="mb-12">
+                <h2 class="text-xl font-semibold mb-4">Live channels we think you'll like</h2>
+                <div id="streamContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <!-- Stream cards will be injected by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Categories Section -->
+            <section>
+                <h2 class="text-xl font-semibold mb-4">Categories we think you'll like</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+                    <!-- Category Cards -->
+                    <div class="bg-twitch-gray rounded-lg overflow-hidden">
+                        <img src="https://picsum.photos/seed/cat1/300/400" alt="Just Chatting" class="w-full aspect-[4/5] object-cover">
+                        <div class="p-3">
+                            <h3 class="font-medium">Just Chatting</h3>
+                            <p class="text-sm text-gray-400">288K viewers</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-twitch-gray rounded-lg overflow-hidden">
+                        <img src="https://picsum.photos/seed/cat2/300/400" alt="League of Legends" class="w-full aspect-[4/5] object-cover">
+                        <div class="p-3">
+                            <h3 class="font-medium">League of Legends</h3>
+                            <p class="text-sm text-gray-400">145K viewers</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-twitch-gray rounded-lg overflow-hidden">
+                        <img src="https://picsum.photos/seed/cat3/300/400" alt="VALORANT" class="w-full aspect-[4/5] object-cover">
+                        <div class="p-3">
+                            <h3 class="font-medium">VALORANT</h3>
+                            <p class="text-sm text-gray-400">98K viewers</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-twitch-gray rounded-lg overflow-hidden">
+                        <img src="https://picsum.photos/seed/cat4/300/400" alt="Minecraft" class="w-full aspect-[4/5] object-cover">
+                        <div class="p-3">
+                            <h3 class="font-medium">Minecraft</h3>
+                            <p class="text-sm text-gray-400">75K viewers</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-twitch-gray rounded-lg overflow-hidden">
+                        <img src="https://picsum.photos/seed/cat5/300/400" alt="GTA V" class="w-full aspect-[4/5] object-cover">
+                        <div class="p-3">
+                            <h3 class="font-medium">GTA V</h3>
+                            <p class="text-sm text-gray-400">156K viewers</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-twitch-gray rounded-lg overflow-hidden">
+                        <img src="https://picsum.photos/seed/cat6/300/400" alt="Art" class="w-full aspect-[4/5] object-cover">
+                        <div class="p-3">
+                            <h3 class="font-medium">Art</h3>
+                            <p class="text-sm text-gray-400">22K viewers</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Dark mode toggle button -->
+    <button id="darkModeToggle" class="fixed bottom-4 left-4 bg-twitch-gray p-2 rounded-full shadow-lg">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- App JavaScript -->
+    <script src="/js/app.js"></script>
+</body>
+</html>
